@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication4
+{
+    public class candidate
+    {
+       public string name;
+       public double gpa;
+       public  string city;
+       public int id;
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            candidate mycand = new candidate();
+            //List<candidate> mylist = new List<candidate>();
+            //  for now I am man
+            Dictionary<int, candidate> mydict1 = new Dictionary<int, candidate>();
+          
+            mycand.name = "hussain";
+            mycand.city = "lahore";
+            mycand.gpa = 3.5;
+            mydict1.Add(0, mycand);
+           
+             mycand = new candidate();
+          mycand.name = "bussain";
+          mycand.city = "tahore";
+          mycand.gpa = 2.5;
+
+          mydict1.Add(1, mycand);
+         
+            mycand = new candidate();
+          mycand.name = "sain";
+          mycand.city = "hr";
+          mycand.gpa = 3;
+           
+            mydict1.Add(2, mycand);
+
+            for (int i = 0; i <3; i++)
+            {
+                Console.WriteLine(mydict1[i].name);
+                Console.WriteLine(mydict1[i].city);
+                Console.WriteLine(mydict1[i].gpa);
+            }
+
+          Console.ReadLine();
+
+          candidate mycand1 = new candidate();
+          //mycand1 = mydict2.ContainsKey(3) ? mydict2[3] : null;
+         
+        }
+
+
+
+
+
+
+    }
+}
