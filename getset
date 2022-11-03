@@ -1,0 +1,87 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace third.Controllers
+{
+    [Route("library")]
+    [ApiController]
+    public class myController : ControllerBase
+    {
+        List<Book> books = new List<Book>
+        {
+            new Book{id=1,name="book1",price=100},
+            new Book{id=2,name="book2",price=200},
+            new Book{id=3,name="book3",price=300},
+            new Book{id=4,name="book4",price=400},
+            new Book{id=5,name="book5",price=500},
+            new Book{id=6,name="book6",price=600},
+            new Book{id=7,name="book7",price=700},
+            new Book{id=8,name="book8",price=800},
+            new Book{id=9,name="book9",price=900},
+            new Book{id=10,name="book10",price=1000},
+            new Book{id=11,name="book11",price=1100},
+            new Book{id=12,name="book12",price=1200},
+            new Book{id=13,name="book13",price=1300},
+            new Book{id=14,name="book14",price=1400},
+            new Book{id=15,name="book15",price=1500},
+            new Book{id=16,name="book16",price=1600},
+            new Book{id=17,name="book17",price=1700},
+            new Book{id=18,name="book18",price=1800},
+            new Book{id=19,name="book19",price=1900},
+            new Book{id=20,name="book20",price=2000}
+        };
+        [HttpGet("getbookname")]
+        public IEnumerable<string> GetName()
+        {
+            var names = from book in books select book.name;
+            return names;
+        }
+        [HttpGet("getbookdetail")]
+        public IEnumerable<Book> GetMarks(string bookname)
+        {
+           var bookDetail = from book in books where book.name == bookname select book;
+            return bookDetail;
+        }
+        [HttpPost("addbook")]
+
+        public List<Book> bookaddition (Book newbook)
+        {
+            books.Add(newbook);
+            return books;
+        }
+        //[HttpPost]
+
+        [HttpPut("updatebook")]
+
+        public string bookupdate(int id, Book upbook)
+        {
+            //int oldbook = (from book in books where book.id == id select book.price).FirstOrDefault();
+            //Book mybook = new Book { name=bookname, price=oldprice };
+            //int index = books.IndexOf(mybook);
+            books[id - 1].name = upbook.name;
+            books[id - 1].price = upbook.price;
+
+
+            return "update succesfull";
+            
+        }
+
+        [HttpDelete("deletebook")]
+
+        public List<Book> delete(Book rembook)
+        {
+            books.Remove(rembook);
+
+            return books;
+
+        }
+
+
+    }
+    public class Book
+    {
+        public int id { get; set; }
+        public String name { get; set; }
+        public int price { get; set; }
+    }
+}
